@@ -10,6 +10,20 @@ import { AplicacionPage } from '../pages/aplicacion/aplicacion';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+// Import the AF2 Module
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
+// AF2 Settings
+export const firebaseConfig = {
+  apiKey: "AIzaSyB1u1dAwh3i4-aGP4y7Pkr5a9PvTFI-pxU",
+  authDomain: "datos-c5776.firebaseapp.com",
+  databaseURL: "https://datos-c5776.firebaseio.com",
+  projectId: "datos-c5776",
+  storageBucket: "datos-c5776.appspot.com",
+  messagingSenderId: "221623210190"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -20,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,6 +46,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
