@@ -8,33 +8,41 @@
 </ion-header>
 
 <ion-content padding>
-  
-    <div *ngIf="showLogin">
-      <ion-item>
-        <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-      </ion-item>
-    </div>
-  
-    <div *ngIf="!showLogin">
-  
-      <ion-item>
-        <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario" value="admin"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="pass" value="11"></ion-input>
-      </ion-item>
-    </div>
-  
-    <button ion-button color="primary" full (click)="login()">Ingresar</button>
-    <button ion-button color="secondary" full >Registrar</button>
-  
-  </ion-content>
+
+  <div *ngIf="showLogin">
+    <ion-item>
+      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="!showLogin">
+
+    <ion-item>
+      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario" value="admin"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="pass" value="11"></ion-input>
+    </ion-item>
+  </div>
+
+  <br>
+  <button ion-button color="secondary" icon-start>
+    <ion-icon name='people'></ion-icon>
+      Registrar
+  </button>
+
+  <button ion-button color="primary" icon-end (click)="login()">
+    Ingresar
+    <ion-icon name='arrow-forward'></ion-icon>
+  </button>
+
+</ion-content>
