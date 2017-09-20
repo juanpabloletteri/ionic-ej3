@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
@@ -28,7 +28,7 @@ export class AplicacionPage {
   usuarios: FirebaseListObservable<any>;
   votos: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, db: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, db: AngularFireDatabase, public toastCtrl: ToastController) {
     this.usuario = this.navParams.get('usuario');
     this.email = this.navParams.get('email');
 
@@ -65,6 +65,13 @@ export class AplicacionPage {
 
   votar() {
     this.usuarios.update(this.usuario, { voto: this.voto, yaVoto: 1 });
+
+    const toast = this.toastCtrl.create({
+      message: 'Su voto ha sido registrado correctamente',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
     //this.usuarios.update(this.usuario, { yaVoto: 0 });
   }
 
