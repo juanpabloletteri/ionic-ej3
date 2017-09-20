@@ -9,48 +9,64 @@
 
 <ion-content padding>
 
-  <div *ngIf="showLogin">
-    <ion-item>
-      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-    </ion-item>
+  <ion-content padding>
 
-    <ion-item>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-  </div>
+    <ion-list>
 
-  <div *ngIf="!showLogin">
+      <ion-item>
+        <ion-label>Es usuario?</ion-label>
+        <ion-toggle value="foo" checked="true" [(ngModel)]="esUsuario"></ion-toggle>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario" value="admin"></ion-input>
-    </ion-item>
+    </ion-list>
 
-    <ion-item>
-      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-    </ion-item>
+    <div *ngIf="esUsuario">
+      <ion-item>
+        <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario" value="admin"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="pass" value="11"></ion-input>
-    </ion-item>
-  </div>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="pass" value="11"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button color="primary" icon-end (click)="login()">
+            Ingresar
+            <ion-icon name='arrow-forward'></ion-icon>
+          </button>
 
-  <br>
-  <button ion-button color="secondary" icon-start>
-    <ion-icon name='people'></ion-icon>
-      Registrar
-  </button>
+    </div>
 
-  <button ion-button color="primary" icon-end (click)="login()">
-    Ingresar
-    <ion-icon name='arrow-forward'></ion-icon>
-  </button>
+    <div *ngIf="!esUsuario">
 
-  <ion-content class="card-background-page">
-    <ion-card>
-      <img src="../../assets/img/login.png" />
-      <div class="card-title">JUAN PABLO LETTERI</div>
-      <div class="card-subtitle">UTN FRA - 4B°</div>
-    </ion-card>
+      <ion-item>
+        <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="pass1"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" placeholder="Confirme su Password" [(ngModel)]="pass2"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button color="secondary" icon-start>
+            <ion-icon name='people'></ion-icon>
+              Registrar
+          </button>
+
+    </div>
+
+    <ion-content class="card-background-page">
+      <ion-card>
+        <img src="../../assets/img/login.png" />
+        <div class="card-title">JUAN PABLO LETTERI</div>
+        <div class="card-subtitle">UTN FRA - 4B°</div>
+      </ion-card>
+    </ion-content>
+
   </ion-content>
-
-</ion-content>
