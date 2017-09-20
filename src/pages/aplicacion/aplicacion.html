@@ -9,4 +9,50 @@
 
 <ion-content padding>
 
+  <ion-list radio-group [(ngModel)]="voto">
+    <ion-list-header>
+      Votacion
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Plantas</ion-label>
+      <ion-radio checked="true" value="plantas"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Matafuegos</ion-label>
+      <ion-radio value="matafuegos"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <div>
+    Usted seleccionara: {{voto}}
+  </div><br>
+
+
+  <div *ngIf="yaVoto">
+    <button ion-button color="secondary" outline icon-start (click)="votar()">
+      <ion-icon name='hand'></ion-icon>
+      Votar
+    </button>
+  </div>
+
+  <div *ngIf="!yaVoto">
+    <button ion-button color="danger" outline icon-start (click)="votar()">
+      <ion-icon name='hand'></ion-icon>
+      Cambiar Voto
+    </button>
+  </div>
+
+  <div>
+    <button ion-button color="primary" outline icon-start (click)="mostrarVotos()">
+      <ion-icon name='folder-open'></ion-icon>
+      Mostrar Votos
+    </button>
+  </div>
+
+  <div *ngFor="let aux of votos | async">
+    {{aux.$key}}={{aux.votos}} 
+  </div>
+
 </ion-content>
