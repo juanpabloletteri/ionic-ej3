@@ -20,7 +20,7 @@ export class AplicacionPage {
   usuario: string;
   email: string;
   yaVoto: boolean;
-  voto: number;
+  voto: number=null;
   votoA: number = 0;
   votoB: number = 0;
   cantVotos: number = 0;

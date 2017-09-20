@@ -11,7 +11,7 @@
 
   <ion-list radio-group [(ngModel)]="voto">
     <ion-list-header>
-      Votacion
+      Este mes votaremos:
     </ion-list-header>
 
     <ion-item>
@@ -25,23 +25,22 @@
     </ion-item>
   </ion-list>
 
-  <div>
+
+  <div *ngIf="voto">
     Usted votara por: opcion {{voto}}
-  </div><br>
-
-
-  <div *ngIf="!yaVoto">
-    <button ion-button color="secondary" outline icon-start (click)="votar()">
+    <div *ngIf="!yaVoto"><br>
+      <button ion-button color="secondary" outline icon-start (click)="votar()">
       <ion-icon name='hand'></ion-icon>
       Votar
     </button>
-  </div>
+    </div>
 
-  <div *ngIf="yaVoto">
-    <button ion-button color="danger" outline icon-start (click)="votar()">
+    <div *ngIf="yaVoto"><br>
+      <button ion-button color="danger" outline icon-start (click)="votar()">
       <ion-icon name='hand'></ion-icon>
       Cambiar Voto
     </button>
+    </div>
   </div>
 
   <ion-card>
