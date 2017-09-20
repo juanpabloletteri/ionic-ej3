@@ -19,16 +19,43 @@ export class AplicacionPage {
 
   usuario: string;
   email: string;
-  yaVoto: boolean = true;
-  voto: string;
+  yaVoto: boolean;
+  voto: number;
+  votoA: number = 0;
+  votoB: number = 0;
+  cantVotos: number = 0;
 
+  usuarios: FirebaseListObservable<any>;
   votos: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, db: AngularFireDatabase) {
     this.usuario = this.navParams.get('usuario');
     this.email = this.navParams.get('email');
 
-    this.votos = db.list('/votos');
+    this.usuarios = db.list('/usuarios');
+
+    this.usuarios.forEach(element => {
+      for (var i = 0; i < 5; i++) {
+        if (element[i].nombre == this.usuario) {
+          this.usuario = element[i].nombre;
+          this.yaVoto = element[i].yaVoto;
+          this.voto = element[i].voto;
+        }
+      }
+    });
+
+    this.usuarios.forEach(element => {
+      for (var i = 0; i < 5; i++) {
+        if (element[i].voto == 1) {
+          this.votoA++;
+          this.cantVotos++;
+        }
+        else if (element[i].voto == 2) {
+          this.votoB++;
+          this.cantVotos++;
+        }
+      }
+    });
 
   }
 
@@ -37,10 +64,8 @@ export class AplicacionPage {
   }
 
   votar() {
-
+    this.usuarios.update(this.usuario, { voto: this.voto, yaVoto: 1 });
+    //this.usuarios.update(this.usuario, { yaVoto: 0 });
   }
 
-  mostrarVotos() {
-
-  }
 }

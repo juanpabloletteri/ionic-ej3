@@ -16,12 +16,12 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 // AF2 Settings
 export const firebaseConfig = {
-  apiKey: "AIzaSyB1u1dAwh3i4-aGP4y7Pkr5a9PvTFI-pxU",
-  authDomain: "datos-c5776.firebaseapp.com",
-  databaseURL: "https://datos-c5776.firebaseio.com",
-  projectId: "datos-c5776",
-  storageBucket: "datos-c5776.appspot.com",
-  messagingSenderId: "221623210190"
+  apiKey: "AIzaSyAt0lqFHmt_L7hGr1p0VVpnE1vi4xFm8sA",
+  authDomain: "ej03-39c5f.firebaseapp.com",
+  databaseURL: "https://ej03-39c5f.firebaseio.com",
+  projectId: "ej03-39c5f",
+  storageBucket: "ej03-39c5f.appspot.com",
+  messagingSenderId: "26965923064"
 };
 
 @NgModule({
