@@ -18,6 +18,7 @@ import { HomePage } from '../home/home';
 export class AplicacionPage {
 
   usuario: string;
+  perfil: string;
   email: string;
   yaVoto: boolean;
   voto: number = null;
@@ -38,10 +39,15 @@ export class AplicacionPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, db: AngularFireDatabase, public toastCtrl: ToastController) {
     this.usuario = this.navParams.get('usuario');
-    this.email = this.navParams.get('email');
+    this.perfil = this.navParams.get('perfil');
     this.esAdmin = false;
+
+    if (this.perfil == 'admin') {
+      this.esAdmin = true;
+    }
     this.usuarios = db.list('/usuarios');
     this.opciones = db.list('/opciones');
+    this.votos = db.list('/votos');
 
     //this.opcion1 = this.opciones[0].opcion1;
     this.opciones.forEach(element => {
@@ -49,21 +55,17 @@ export class AplicacionPage {
       this.opcion2 = element[0].opcion2;
     })
 
-    this.usuarios.forEach(element => {
+    this.votos.forEach(element => {
       for (var i = 0; i < 5; i++) {
         if (element[i].nombre == this.usuario) {
           this.usuario = element[i].nombre;
           this.yaVoto = element[i].yaVoto;
           this.voto = element[i].voto;
-          //SI ES ADMIN VEMAS OPCIONES
-          if (element[i].perfil == 'admin') {
-            this.esAdmin = true;
-          }
         }
       }
     });
     //CUENTO LA CANTIDAD DE VOTOS AL MOMENTO
-    this.usuarios.forEach(element => {
+    /*this.votos.forEach(element => {
       for (var i = 0; i < 5; i++) {
         if (element[i].voto == 1) {
           this.votoA++;
@@ -74,7 +76,8 @@ export class AplicacionPage {
           this.cantVotos++;
         }
       }
-    });
+    });*/
+    this.contarVotos();
   }
 
   ionViewDidLoad() {
@@ -82,7 +85,7 @@ export class AplicacionPage {
   }
 
   votar() {
-    this.usuarios.update(this.usuario, { voto: this.voto, yaVoto: 1 });
+    this.votos.update(this.usuario, { voto: this.voto, yaVoto: 1 });
 
     const toast = this.toastCtrl.create({
       message: 'Su voto ha sido registrado correctamente',
@@ -90,15 +93,17 @@ export class AplicacionPage {
       closeButtonText: 'Ok'
     });
     toast.present();
-    //this.usuarios.update(this.usuario, { yaVoto: 0 });
+
+    this.contarVotos();
   }
 
   reiniciarVotacion() {
-    this.usuarios.forEach(element => {
+    this.votos.forEach(element => {
       for (var i = 0; i < 5; i++) {
-        this.usuarios.update(element[i].nombre, { voto: 0, yaVoto: 0 });
+        this.votos.update(element[i].nombre, { voto: 0, yaVoto: 0 });
       }
     });
+    this.navCtrl.pop();
   }
   establecerNuevasOpciones() {
     this.opciones.update('op', { opcion1: this.nuevaOpcion1, opcion2: this.nuevaOpcion2 });
@@ -111,5 +116,23 @@ export class AplicacionPage {
     toast.present();
 
     this.reiniciarVotacion();
+  }
+
+  contarVotos(){
+    this.votoA=0;
+    this.votoB=0;
+    this.cantVotos=0;
+    this.votos.forEach(element => {
+      for (var i = 0; i < 5; i++) {
+        if (element[i].voto == 1) {
+          this.votoA++;
+          this.cantVotos++;
+        }
+        else if (element[i].voto == 2) {
+          this.votoB++;
+          this.cantVotos++;
+        }
+      }
+    });
   }
 }

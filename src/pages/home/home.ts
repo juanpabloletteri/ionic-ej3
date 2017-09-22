@@ -13,6 +13,7 @@ export class HomePage {
   usuario: string;
   email: string;
   pass: string;
+  perfil: string;
 
   pass1: string;
   pass2: string;
@@ -22,20 +23,22 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, db: AngularFireDatabase, ) {
     this.usuarios = db.list('/usuarios');
-    console.log(this.usuarios);
   }
   login() {
     this.usuarios.forEach(element => {
       for (var i = 0; i < 5; i++) {
         if (element[i].nombre == this.usuario && element[i].clave == this.pass) {
           //SE ENCONTRO USUARIO
+          this.usuario = element[i].nombre;
+          this.perfil = element[i].perfil;
+          
           let alert = this.alertCtrl.create({
             title: 'Bienvenido: ' + this.usuario,
             buttons: ['OK']
           });
           alert.present();
           //Redirijo a la pagina correspondiente
-          this.navCtrl.push(AplicacionPage, { "usuario": this.usuario, "email": this.email });
+          this.navCtrl.push(AplicacionPage, { "usuario": this.usuario, "perfil": this.perfil });
           return;
         }
       }
