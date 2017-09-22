@@ -1,9 +1,10 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Votacion Consorcio</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Votacion de Consorcio</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -15,12 +16,12 @@
     </ion-list-header>
 
     <ion-item>
-      <ion-label>Plantas</ion-label>
+      <ion-label>{{opcion1}}</ion-label>
       <ion-radio checked="true" value=1></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-label>Matafuegos</ion-label>
+      <ion-label>{{opcion2}}</ion-label>
       <ion-radio value=2></ion-radio>
     </ion-item>
   </ion-list>
@@ -49,13 +50,33 @@
     </ion-card-header>
     <ion-card-content>
       <ion-icon name="leaf"></ion-icon>
-      Plantas: {{votoA}}<br><br>
+      {{opcion1}}: {{votoA}}<br><br>
       <ion-icon name="flame"></ion-icon>
-      Matafuegos: {{votoB}}<br><br>
+      {{opcion2}}: {{votoB}}<br><br>
       <ion-icon name="card"></ion-icon>
       Cantidad de votantes: {{cantVotos}}
     </ion-card-content>
   </ion-card>
 
+  <div *ngIf="esAdmin"><br>
+    <button ion-button color="danger" outline icon-start (click)="reiniciarVotacion()">
+    <ion-icon name='archive'></ion-icon>
+    Reiniciar Votacion
+  </button>
+  </div>
+
+
+  <div *ngIf="esAdmin"><br>
+    <ion-item>
+      <ion-input type="text" placeholder="Opcion 1" [(ngModel)]="nuevaOpcion1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Opcion 2" [(ngModel)]="nuevaOpcion2"></ion-input>
+    </ion-item>
+    <button ion-button color="danger" outline icon-start (click)="establecerNuevasOpciones()">
+      <ion-icon name='archive'></ion-icon>
+      Establecer nuevas opciones
+    </button>
+  </div>
 
 </ion-content>
