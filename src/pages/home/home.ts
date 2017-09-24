@@ -32,7 +32,7 @@ export class HomePage {
           //SE ENCONTRO USUARIO
           this.usuario = element[i].nombre;
           this.perfil = element[i].perfil;
-          
+
           let alert = this.alertCtrl.create({
             title: 'Bienvenido: ' + this.usuario,
             buttons: ['OK']
@@ -73,5 +73,34 @@ export class HomePage {
       this.email = "";
       this.pass = "";
     }*/
+  }
+  asignarUsuario(tipo) {
+    switch (tipo) {
+      case "admin": {
+        this.usuario = "admin";
+        this.pass = "11";
+        break;
+      }
+      case "invitado": {
+        this.usuario = "invitado";
+        this.pass = "22";
+        break;
+      }
+      case "usuario": {
+        this.usuario = "usuario";
+        this.pass = "33";
+        break;
+      }
+      case "j1": {
+        this.usuario = "j1";
+        this.pass = "44";
+        break;
+      }
+      case "j2": {
+        this.usuario = "j2";
+        this.pass = "55";
+        break;
+      }
+    }
   }
 }
