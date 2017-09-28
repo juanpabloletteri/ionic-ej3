@@ -27,17 +27,12 @@ export class HomePage {
   login() {
     this.usuarios.forEach(element => {
       for (let i in element) {
-        console.log(i);
+        //console.log(i);
         if (element[i].nombre == this.usuario && element[i].clave == this.pass) {
           //SE ENCONTRO USUARIO
           this.usuario = element[i].nombre;
           this.perfil = element[i].perfil;
 
-          let alert = this.alertCtrl.create({
-            title: 'Bienvenido: ' + this.usuario,
-            buttons: ['OK']
-          });
-          alert.present();
           //Redirijo a la pagina correspondiente
           this.navCtrl.push(AplicacionPage, { "usuario": this.usuario, "perfil": this.perfil });
           return;

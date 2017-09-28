@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { HomePage } from '../home/home';
@@ -37,10 +37,16 @@ export class AplicacionPage {
   votos: FirebaseListObservable<any>;
   opciones: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, db: AngularFireDatabase, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, db: AngularFireDatabase, public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
     this.usuario = this.navParams.get('usuario');
     this.perfil = this.navParams.get('perfil');
     this.esAdmin = false;
+
+    let loader = this.loadingCtrl.create({
+      content: "Cargando...",
+      duration: 1500
+    });
+    loader.present();
 
     if (this.perfil == 'admin') {
       this.esAdmin = true;
@@ -81,7 +87,7 @@ export class AplicacionPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AplicacionPage');
+    //console.log('ionViewDidLoad AplicacionPage');
   }
 
   votar() {
@@ -118,10 +124,10 @@ export class AplicacionPage {
     this.reiniciarVotacion();
   }
 
-  contarVotos(){
-    this.votoA=0;
-    this.votoB=0;
-    this.cantVotos=0;
+  contarVotos() {
+    this.votoA = 0;
+    this.votoB = 0;
+    this.cantVotos = 0;
     this.votos.forEach(element => {
       for (var i = 0; i < 5; i++) {
         if (element[i].voto == 1) {
