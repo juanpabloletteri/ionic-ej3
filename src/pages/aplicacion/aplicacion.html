@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="fondo">
 
   <ion-list radio-group [(ngModel)]="voto">
     <ion-list-header>
@@ -28,16 +28,20 @@
 
 
   <div *ngIf="voto">
-    Usted votara por: opcion {{voto}}
+    <ion-card>
+      <ion-card-header class="fondoverde"> Usted votara por: opcion {{voto}} </ion-card-header>
+    </ion-card>
+
     <div *ngIf="!yaVoto"><br>
-      <button ion-button color="secondary" outline icon-start (click)="votar()">
+      <button ion-button color="secondary" icon-start (click)="votar()">
       <ion-icon name='hand'></ion-icon>
       Votar
     </button>
     </div>
 
+
     <div *ngIf="yaVoto"><br>
-      <button ion-button color="danger" outline icon-start (click)="votar()">
+      <button ion-button color="danger" icon-start (click)="votar()">
       <ion-icon name='hand'></ion-icon>
       Cambiar Voto
     </button>
@@ -45,10 +49,10 @@
   </div>
 
   <ion-card>
-    <ion-card-header>
+    <ion-card-header class="fondoverde">
       Resultados de la votacion:
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content  class="fondoverde">
       <ion-icon name="leaf"></ion-icon>
       {{opcion1}}: {{votoA}}<br><br>
       <ion-icon name="flame"></ion-icon>
@@ -59,7 +63,7 @@
   </ion-card>
 
   <div *ngIf="esAdmin"><br>
-    <button ion-button color="danger" outline icon-start (click)="reiniciarVotacion()">
+    <button ion-button color="danger" icon-start (click)="reiniciarVotacion()">
     <ion-icon name='archive'></ion-icon>
     Reiniciar Votacion
   </button>
@@ -72,8 +76,8 @@
     </ion-item>
     <ion-item>
       <ion-input type="text" placeholder="Opcion 2" [(ngModel)]="nuevaOpcion2"></ion-input>
-    </ion-item>
-    <button ion-button color="danger" outline icon-start (click)="establecerNuevasOpciones()">
+    </ion-item><br>
+    <button ion-button color="danger" icon-start (click)="establecerNuevasOpciones()">
       <ion-icon name='archive'></ion-icon>
       Establecer nuevas opciones
     </button>
