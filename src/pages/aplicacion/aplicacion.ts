@@ -62,7 +62,7 @@ export class AplicacionPage {
     })
 
     this.votos.forEach(element => {
-      for (var i = 0; i < 5; i++) {
+      for (let i in element) {
         if (element[i].nombre == this.usuario) {
           this.usuario = element[i].nombre;
           this.yaVoto = element[i].yaVoto;
