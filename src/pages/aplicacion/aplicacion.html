@@ -13,19 +13,18 @@
   <ion-list radio-group [(ngModel)]="voto">
     <ion-list-header>
       Este mes votaremos:
-    </ion-list-header>
+    </ion-list-header><br>
 
-    <ion-item>
-      <ion-label>{{opcion1}}</ion-label>
+    <ion-item class="botonMatafuego">
+      <!--  <ion-label>{{opcion1}}</ion-label> -->
       <ion-radio checked="true" value=1></ion-radio>
     </ion-item>
-
-    <ion-item>
-      <ion-label>{{opcion2}}</ion-label>
+    <br>
+    <ion-item class="botonPlanta">
+      <!--    <ion-label>{{opcion2}}</ion-label>-->
       <ion-radio value=2></ion-radio>
     </ion-item>
   </ion-list>
-
 
   <div *ngIf="voto">
     <ion-card>
@@ -51,14 +50,18 @@
   <ion-card>
     <ion-card-header class="fondoverde">
       Resultados de la votacion:
+      <br><br>
     </ion-card-header>
-    <ion-card-content  class="fondoverde">
-      <ion-icon name="leaf"></ion-icon>
-      {{opcion1}}: {{votoA}}<br><br>
-      <ion-icon name="flame"></ion-icon>
-      {{opcion2}}: {{votoB}}<br><br>
-      <ion-icon name="card"></ion-icon>
-      Cantidad de votantes: {{cantVotos}}
+    <ion-card-content class="fondoverde">
+      <h1>
+        <ion-icon name="flame"></ion-icon>
+        {{opcion1}}: {{votoA}}</h1><br><br>
+      <h1>
+        <ion-icon name="leaf"></ion-icon>
+        {{opcion2}}: {{votoB}}</h1><br><br>
+      <h2>
+        <ion-icon name="card"></ion-icon>
+        Cantidad de votantes: {{cantVotos}}</h2>
     </ion-card-content>
   </ion-card>
 
