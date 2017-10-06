@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding >
+<ion-content padding>
 
   <ion-content padding class="fondo">
 
@@ -30,9 +30,9 @@
       </ion-item>
       <br>
       <button ion-button color="primary" icon-end (click)="login()">
-            Ingresar
-            <ion-icon name='arrow-forward'></ion-icon>
-          </button>
+        Ingresar
+        <ion-icon name='arrow-forward'></ion-icon>
+      </button>
 
     </div>
 
@@ -54,16 +54,18 @@
         <ion-input type="password" placeholder="Confirme su Password" [(ngModel)]="pass2"></ion-input>
       </ion-item>
       <br>
-      <button ion-button color="secondary" icon-start>
-            <ion-icon name='people'></ion-icon>
-              Registrar
-          </button>
+      <button ion-button color="secondary" icon-start (click)="registrar()">
+        <ion-icon name='people'></ion-icon>
+        Registrar
+      </button>
 
     </div>
 
 
     <ion-fab left bottom>
-      <button ion-fab color="secondary"><ion-icon name="arrow-dropright"></ion-icon></button>
+      <button ion-fab color="secondary">
+        <ion-icon name="arrow-dropright"></ion-icon>
+      </button>
       <ion-fab-list side="right">
         <button ion-fab (click)="asignarUsuario('admin')">AD</button>
         <button ion-fab (click)="asignarUsuario('invitado')">IN</button>
